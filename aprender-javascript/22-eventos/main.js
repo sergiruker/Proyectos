@@ -79,12 +79,137 @@ inputNombre.addEventListener("input", function() {
 
 });
 
-// change oara cuando un elemento cambia de valor
+// change para cuando un elemento cambia de valor
 
 let selectGenero = document.querySelector("#genero");
 
 selectGenero.addEventListener("change", () =>{
 
     console.warn("Has cambiado el select a: "+selectGenero.value);
+
+});
+
+let campoEmail = document.querySelector("#email");
+
+campoEmail.addEventListener("focus", ()  => {
+
+    console.log("Acabas de entrar al campo del email OJITO");
+
+    campoEmail.style.border = "5px solid red";
+
+});
+
+campoEmail.addEventListener("blur", ()  => {
+
+    console.log("Has salido del foco");
+
+    campoEmail.style.border = "2px solid black";
+
+});
+
+// Eventos del documento y la ventana para saber que el Dom está cargandose en nuestra web
+
+document.addEventListener("DOMContentLoaded", () =>{
+
+    // Aquí hago todo mi código de JavaScript
+
+    console.log("TODO EL DOM ESTA CARGADO");
+
+});
+
+window.addEventListener("load", () => {
+
+    console.warn("Toda la web esta cargada, incluido los recursos !!**");
+
+});
+
+// Para saber temas de responsive y el tamaño de la pantalla
+window.addEventListener("resize", () => {
+
+    console.log("Ventana redimensionada!!"+window.innerWidth+ " "+window.innerHeight);
+});
+
+// scroll para saber el pixel en el que estoy de scroll
+
+window.addEventListener("scroll", () => {
+
+    console.log("Estas en el pixel"+Math.round(window.scrollY)+" de scroll en la pantalla");
+
+});
+
+// Eventos del portapapeles
+
+let portapapeles = document.querySelector("#portapapeles");
+
+portapapeles.addEventListener("copy", () => {
+
+    alert("Ey ey no copies, está prohibido");
+
+    // Vaciar el portapapeles
+    navigator.clipboard.writeText("");
+
+});
+
+portapapeles.addEventListener("paste", () => {
+
+    alert("Has pegado un texto en el input!!");
+
+});
+
+portapapeles.addEventListener("cut", () => {
+
+    alert("Has cortado un texto para llevartelo a saber!!");
+
+});
+
+portapapeles.addEventListener("contextmenu", () => {
+
+    console.warn("El usuario ha abierto el menú contextual");
+
+});
+
+// Bloquear el menu contextual
+portapapeles.addEventListener("contextmenu", (event) => {
+    
+    event.preventDefault();
+
+});
+
+// Dejar de escuchar eventos
+
+let botoncito2 = document.querySelector("#botoncito2");
+function alertita (){
+
+    alert("Has dado click al botoncito2!!");
+
+}
+
+botoncito2.addEventListener("click", alertita);
+
+setTimeout(() => {
+
+    botoncito2.removeEventListener("click", alertita);
+
+    alert("¡YA NO PUEDES USAR EL BOTONCITO!");
+
+}, 10000);
+
+// Propagación de eventos
+
+let cajaPadre = document.querySelector("#cajaPAdre");
+let botonHijo = document.querySelector("#botonHijo");
+
+cajaPadre.addEventListener("click", () => {
+
+    alert("Has tocado el ELEMENTO PADRE!!");
+
+});
+
+botonHijo.addEventListener("click", (event) => {
+
+    // Para evitar la propagación
+    event.stopPropagation();
+
+    alert("Has tocado el ELEMENTO HIJO!!");
 
 });
